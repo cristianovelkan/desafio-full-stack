@@ -16,11 +16,6 @@ class AuthController extends BaseController
         $this->authService = $authService;
     }
 
-    /**
-     * Register api
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function register(RegisterRequest $request)
     {
         try {
@@ -29,12 +24,6 @@ class AuthController extends BaseController
             return $this->sendError('Erro.', $e->getMessage());
         }
     }
-
-    /**
-     * Login api
-     *
-     * @return \Illuminate\Http\Response
-     */
 
     public function login(Request $request)
     {

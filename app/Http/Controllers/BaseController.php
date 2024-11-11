@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller as Controller;
 
-
+/**
+ * @OA\Info(title="Desafio Full Stack", version="0.1")
+ */
 class BaseController extends Controller
 {
 

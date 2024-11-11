@@ -1,0 +1,169 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Desafio Full Stack",
+        "version": "0.1"
+    },
+    "paths": {
+        "/auth/register": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Register a new user",
+                "description": "Register a new user",
+                "operationId": "6edfb1b913bd68fb21ed7bdbe58ddc3f",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "type": "string"
+                                    },
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    },
+                                    "c_password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "name": "Cristiano Mendes",
+                                    "email": "cristiano@mendes.dev",
+                                    "password": "Password@123",
+                                    "c_password": "Password@123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "token": "1|5H4gXtymF8LlJkAghbSPLMoo8vNXL5sbGO3FN0iC3e03fb26",
+                                                "user": {
+                                                    "id": "user-bf2-fcb7-4ab5-8e38-e60fb3766306",
+                                                    "name": "Cristiano Mendes",
+                                                    "email": "cristiano@zenus.app"
+                                                }
+                                            },
+                                            "message": "Registrado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sign in",
+                "description": "Sign in",
+                "operationId": "e6e5a6e33cd0fa60f7d959ab9e4a1900",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "type": "string"
+                                    },
+                                    "password": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "email": "cristiano@mendes.dev",
+                                    "password": "Password@123"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "token": "1|5H4gXtymF8LlJkAghbSPLMoo8vNXL5sbGO3FN0iC3e03fb26",
+                                                "user": {
+                                                    "id": "user-bf2-fcb7-4ab5-8e38-e60fb3766306",
+                                                    "name": "Cristiano Mendes",
+                                                    "email": "cristiano@zenus.app"
+                                                }
+                                            },
+                                            "message": "Registrado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/auth/logout": {
+            "delete": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "Sign out",
+                "description": "Sign out",
+                "operationId": "c7042c8f65b3b22cc6e1a159b8381b9a",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": "[]",
+                                            "message": "Você foi deslogado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "Auth",
+            "description": "Auth"
+        }
+    ]
+}

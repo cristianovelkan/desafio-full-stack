@@ -6,3 +6,7 @@
 ### 2. Run Laravel migrations:
 
 `docker exec -t laravelapp php artisan migrate`
+
+## Swagger Api Docs at:
+
+`http://localhost/api/documentation`
