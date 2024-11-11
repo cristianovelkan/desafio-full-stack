@@ -28,9 +28,7 @@ RUN chown -R www-data:www-data /var/www/html \
     && chmod -R 775 /var/www/html/storage \
     && chmod -R 775 /var/www/html/bootstrap/cache
 
-RUN composer install --no-dev --prefer-dist \
-    && npm install \
-    && npm run build
+RUN composer install --no-dev --prefer-dist
 
 RUN chown -R www-data:www-data /var/www/html/vendor \
     && chmod -R 775 /var/www/html/vendor
