@@ -6,17 +6,18 @@ use App\Repositories\Contracts\UserRepositoryInterface;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Ramsey\Uuid\Uuid;
 
 class AuthService
 {
-
     protected $userRepository;
+    protected $balanceService;
 
     public function __construct(
-        UserRepositoryInterface $userRepository
+        UserRepositoryInterface $userRepository,
+        BalanceService $balanceService
     ) {
         $this->userRepository = $userRepository;
+        $this->balanceService = $balanceService;
     }
 
 
@@ -27,6 +28,7 @@ class AuthService
         $request->merge($input);
 
         $user = $this->userRepository->create($request);
+        $this->balanceService->create($user->id);
 
         $data['token'] =  $user->createToken("{$request->email} Register")->plainTextToken;
         $data['user'] =  $this->userRepository->getById($user->id);

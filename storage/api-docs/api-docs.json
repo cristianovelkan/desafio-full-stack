@@ -158,12 +158,49 @@
                     }
                 }
             }
+        },
+        "/api/balance": {
+            "get": {
+                "tags": [
+                    "Balance"
+                ],
+                "summary": "Get Logged User Balance",
+                "operationId": "cba0391080557167de89d3cda0c823fa",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": "balance--38db-44e9-84ef-31a38419d788",
+                                                "user_id": "user-bf2-fcb7-4ab5-8e38-e60fb3766306",
+                                                "value": "0.00"
+                                            },
+                                            "message": "Saldo obtido com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
         }
     },
     "tags": [
         {
             "name": "Auth",
             "description": "Auth"
+        },
+        {
+            "name": "Balance",
+            "description": "Balance"
         }
     ]
 }
