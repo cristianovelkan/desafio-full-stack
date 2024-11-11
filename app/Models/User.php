@@ -70,4 +70,14 @@ class User extends Authenticatable
             'id' => 'string',
         ];
     }
+
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    public function balance()
+    {
+        return $this->hasOne(Balance::class);
+    }
 }
