@@ -18,20 +18,29 @@ class BalanceService
     }
 
 
-    public function increment(Request $request)
+    public function increment(Request $request, $user)
     {
-        $balance = $this->balanceRepository->getByUserId(Auth::user()->id);
+        $balance = $this->balanceRepository->getByUserId($user->id);
         $this->balanceRepository->increment($balance, $request->value);
 
         return $balance->fresh();
     }
 
-    public function decrement(Request $request)
+    public function decrement(Request $request, $user)
     {
-        $balance = $this->balanceRepository->getByUserId(Auth::user()->id);
+        $balance = $this->balanceRepository->getByUserId($user->id);
         $this->balanceRepository->decrement($balance, $request->value);
 
         return $balance->fresh();
+    }
+
+    public function check(Request $request)
+    {
+        $balance = $this->balanceRepository->getByUserId(Auth::user()->id);
+
+        if ($balance->value < $request->value) {
+            throw new \Exception('Saldo insuficiente.');
+        }
     }
 
     public function getBalance()

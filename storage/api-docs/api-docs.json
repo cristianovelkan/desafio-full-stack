@@ -191,6 +191,194 @@
                     }
                 }
             }
+        },
+        "/api/transactions": {
+            "get": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Get Logged User Statement",
+                "operationId": "8a8ad40cfb14c57f0740a61d274e6b3f",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": "[]",
+                                            "message": "Extrato obtido com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/deposit": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Make a deposit",
+                "description": "Make a deposit",
+                "operationId": "8f8dae757df3daea80711bda92e774cf",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "value": {
+                                        "type": "number"
+                                    },
+                                    "description": {
+                                        "type": "string"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "value": 10
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": "transaction-a-437b-b40d-0c0cb0c340e5",
+                                                "user_id": "user-f91-6bd1-45db-9eb7-75dbf7bec959",
+                                                "user": "Desenvolvimento",
+                                                "payer_id": "user-f91-6bd1-45db-9eb7-75dbf7bec959",
+                                                "payer": "Desenvolvimento",
+                                                "type": "Entrada",
+                                                "category": "Depósito",
+                                                "value": "10,00",
+                                                "description": "Depósito em conta.",
+                                                "created_at": "11/11/2024 16:55:23"
+                                            },
+                                            "message": "Depósito efetuado com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transfer": {
+            "post": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Send value to another user",
+                "description": "Send value to another user",
+                "operationId": "e12606a4edf37fc8d7cb4bc0c15ad89e",
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "properties": {
+                                    "user_id": {
+                                        "type": "uuid"
+                                    },
+                                    "value": {
+                                        "type": "number"
+                                    },
+                                    "date": {
+                                        "type": "string",
+                                        "format": "date"
+                                    }
+                                },
+                                "type": "object",
+                                "example": {
+                                    "value": 10,
+                                    "user_id": "user-f91-6bd1-45db-9eb7-75dbf7bec959",
+                                    "date": "2024-11-11"
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "examples": {
+                                    "result": {
+                                        "summary": "An result object.",
+                                        "value": {
+                                            "success": true,
+                                            "data": {
+                                                "id": "transaction-1-47d8-8ede-4b25c916cc92",
+                                                "user_id": "user-f91-6bd1-45db-9eb7-75dbf7bec959",
+                                                "user": "Desenvolvimento",
+                                                "payer_id": "user-f91-6bd1-45db-9eb7-75dbf7bec959",
+                                                "payer": "Desenvolvimento",
+                                                "type": "Saía",
+                                                "category": "Transferência",
+                                                "value": "5,00",
+                                                "description": "Transferência para conta de Desenvolvimento",
+                                                "created_at": "11/11/2024 17:40:38"
+                                            },
+                                            "message": "Transferência efetuada com sucesso."
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/transactions/{id}": {
+            "delete": {
+                "tags": [
+                    "Transactions"
+                ],
+                "summary": "Cancel a transaction",
+                "operationId": "54e54f926db0f3353d829ba0eaba819c",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Id of the transaction",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        },
+                        "examples": {
+                            "uuid": {
+                                "summary": "An UUID value.",
+                                "value": "0006faf6-7a61-426c-9034-579f2cfcfa83"
+                            }
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK"
+                    }
+                }
+            }
         }
     },
     "tags": [
@@ -201,6 +389,10 @@
         {
             "name": "Balance",
             "description": "Balance"
+        },
+        {
+            "name": "Transactions",
+            "description": "Transactions"
         }
     ]
 }

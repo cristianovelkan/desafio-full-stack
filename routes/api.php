@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BalanceController;
+use App\Http\Controllers\TransactionController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -16,4 +17,9 @@ Route::middleware('auth:sanctum')->group(function () {
     });
 
     Route::get('/balance', [BalanceController::class, 'show']);
+
+    Route::get('/transactions', [TransactionController::class, 'index']);
+    Route::post('/deposit', [TransactionController::class, 'deposit']);
+    Route::post('/transactions', [TransactionController::class, 'transfer']);
+    Route::delete('/transactions/{id}', [TransactionController::class, 'cancel']);
 });

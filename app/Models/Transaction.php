@@ -43,6 +43,7 @@ class Transaction extends Model
         'category',
         'status',
         'description',
+        'due_date'
     ];
 
     public function payer()

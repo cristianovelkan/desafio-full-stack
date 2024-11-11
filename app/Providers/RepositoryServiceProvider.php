@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Repositories\Contracts\{
     BalanceRepositoryInterface,
+    TransactionRepositoryInterface,
     UserRepositoryInterface,
 };
 use App\Repositories\{
     BalanceRepository,
+    TransactionRepository,
     UserRepository,
 };
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +25,7 @@ class RepositoryServiceProvider extends ServiceProvider
     {
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(BalanceRepositoryInterface::class, BalanceRepository::class);
+        $this->app->bind(TransactionRepositoryInterface::class, TransactionRepository::class);
     }
 
     /**
